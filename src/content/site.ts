@@ -13,15 +13,14 @@ export const site = {
     "Lamisa is a digital marketing specialist with 4 years of experience helping artists, brands, and organizations grow their audience organically through social media, content, SEO, and strategy.",
 
   /** Your real email address, e.g. "hello@yourdomain.com". Empty = placeholder shown. */
-  email: "",
+  email: "lamisahossaindip@gmail.com",
   placeholderEmail: "your-email@example.com",
 
   /** Paste full profile URLs. Empty ones are hidden everywhere on the site. */
   socials: [
-    { key: "linkedin", label: "LinkedIn", url: "" },
-    { key: "instagram", label: "Instagram", url: "" },
-    { key: "x", label: "X", url: "" },
-    { key: "facebook", label: "Facebook", url: "" },
+    { key: "instagram", label: "Instagram", url: "https://www.instagram.com/lamisa.hosain/" },
+    { key: "x", label: "X", url: "https://x.com/Lamisa_Hossain_" },
+    { key: "facebook", label: "Facebook", url: "https://www.facebook.com/profile.php?id=61595937069750" },
   ] as { key: "linkedin" | "instagram" | "x" | "facebook"; label: string; url: string }[],
 
   /**
@@ -29,8 +28,8 @@ export const site = {
    * Empty = a tasteful placeholder is shown.
    */
   images: {
-    hero: "",
-    about: "",
+    hero: "/images/lamisa.jpg",
+    about: "/images/lamisa.jpg",
   },
 };
 
