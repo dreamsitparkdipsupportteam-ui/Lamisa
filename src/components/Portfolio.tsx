@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Flag, Lightbulb, Target, X } from "lucide-react";
+import { ArrowRight, Briefcase, Flag, Lightbulb, Target, X } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { projects, type Project } from "@/content/projects";
@@ -17,7 +17,7 @@ function ProjectVisual({ project, className = "" }: { project: Project; classNam
           alt={project.title}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
       </div>
     );
@@ -73,10 +73,11 @@ function CaseStudyDialog({ project, onClose }: { project: Project; onClose: () =
   }, [onClose]);
 
   const sections = [
-    { icon: Target, title: "Challenge", text: project.challenge },
-    { icon: Lightbulb, title: "Strategy", text: project.strategy },
-    { icon: Flag, title: "Results", text: project.results },
-  ];
+    { icon: Briefcase, title: "My role", text: project.role ?? "" },
+    { icon: Target, title: "Challenge", text: project.challenge ?? "" },
+    { icon: Lightbulb, title: "Strategy", text: project.strategy ?? "" },
+    { icon: Flag, title: "Results", text: project.results ?? "" },
+  ].filter((section) => section.text !== "");
 
   return (
     <motion.div
@@ -143,6 +144,29 @@ function CaseStudyDialog({ project, onClose }: { project: Project; onClose: () =
               </div>
             ))}
           </div>
+
+          {project.gallery && project.gallery.length > 0 ? (
+            <div className="mt-8">
+              <h4 className="font-display text-lg font-semibold">Project images</h4>
+              <ul className="mt-4 grid gap-5">
+                {project.gallery.map((g) => (
+                  <li key={g.src}>
+                    <figure>
+                      <Image
+                        src={g.src}
+                        alt={g.alt}
+                        width={g.width}
+                        height={g.height}
+                        sizes="(min-width: 768px) 700px, 100vw"
+                        className="h-auto w-full rounded-2xl border border-brand-lavender"
+                      />
+                      <figcaption className="mt-2 text-sm text-brand-ink/70">{g.caption}</figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
           <a href="#contact" onClick={onClose} className="btn btn-primary mt-8 w-full sm:w-auto">
             Discuss a similar project
